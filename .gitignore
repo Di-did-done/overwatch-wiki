@@ -1,0 +1,62 @@
+########################
+# sails
+########################
+.sails
+.waterline
+.rigging
+.tmp
+application.pid
+
+########################
+# node.js / npm
+########################
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+backend/node_modules
+frontend/node_modules
+frontend/vendors
+
+npm-debug.log
+
+########################
+# misc / editors
+########################
+*~
+*#
+.DS_STORE
+.netbeans
+nbproject
+.idea
+
+########################
+# build / tmp
+########################
+backend/.tmp
+backend/tmp
+
+frontend/build
+frontend/dist
+frontend/dist-dll
+frontend/tmp
+frontend/version.json
+frontend/tslint-result.json
+
+########################
+# unit
+########################
+frontend/src/tests/coverage
+
+########################
+# local config
+########################
