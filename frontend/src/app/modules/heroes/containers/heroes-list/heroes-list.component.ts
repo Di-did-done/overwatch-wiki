@@ -24,19 +24,11 @@ class HeroesListController {
     }
 
     $onInit() {
-        this.loadHeroes();
+        this.loadHeroesAction();
     }
 
     $onDestroy() {
         this.unsubscribe();
-    }
-
-    loadHeroes() {
-        this.loadHeroesAction().then(() => {
-            if (this.heroes.length) {
-                this.selectHero(this.heroes[0].id);
-            }
-        });
     }
 
     selectHero(heroId: string) {

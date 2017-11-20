@@ -1,7 +1,19 @@
-<div class="heroes-page layout-row">
-    <div class="flex-70">
-        <heroes-filters></heroes-filters>
+<div class="heroes-page layout-column flex">
+    <div class="layout-row flex">
+        <div class="flex-70 layout-column">
+            <heroes-filters></heroes-filters>
 
-        <heroes-list></heroes-list>
+            <md-content class="layout-column flex">
+                <heroes-list></heroes-list>
+            </md-content>
+        </div>
+
+        <div class="flex-5 layout-column layout-align-center-center">
+            <div class="delimiter flex"></div>
+        </div>
+
+        <div class="flex-25">
+            <hero-preview hero="$ctrl.selectedHero"></hero-preview>
+        </div>
     </div>
 </div>

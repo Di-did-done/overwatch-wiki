@@ -1,17 +1,19 @@
 import angular from 'angular';
 import { combineReducers } from 'redux';
 
+import { effect$ } from '../../app.effects';
+
 import { HeroesRoutesConfig } from './heroes.routes';
 
 import { HeroesPageComponent } from './routes';
 import { HeroesListComponent, HeroesFiltersComponent } from './containers';
+import { HeroPreviewComponent } from './components';
 
 import { HeroesApiService } from './services/heroes.api.service';
 import { HeroesFiltersApiService } from './services/heroes-filters.api.service';
 import { heroesReducer } from './store/heroes/reducer';
 import { filtersReducer } from './store/filters/reducer';
-import { effect$ } from '../../app.effects';
-import { loadFilteredHeroesEffect } from './store/heroes/effects';
+import { loadFilteredHeroesEffect, selectHeroAfterLoadingEffect } from './store/heroes/effects';
 
 
 export const HeroesModule = angular
@@ -21,6 +23,8 @@ export const HeroesModule = angular
 
     .component('heroesList', HeroesListComponent)
     .component('heroesFilters', HeroesFiltersComponent)
+
+    .component('heroPreview', HeroPreviewComponent)
 
     .service('HeroesApiService', HeroesApiService)
     .service('HeroesFiltersApiService', HeroesFiltersApiService)
@@ -37,3 +41,4 @@ export const HeroesModule = angular
     }]);
 
 effect$.next(loadFilteredHeroesEffect);
+effect$.next(selectHeroAfterLoadingEffect);
