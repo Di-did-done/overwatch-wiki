@@ -1,1 +1,1 @@
-Angular Hybrid App for Overwatch Heroes
+Overwatch Wiki

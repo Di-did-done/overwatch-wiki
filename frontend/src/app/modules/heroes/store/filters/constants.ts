@@ -1,0 +1,5 @@
+export const REQUEST_FILTERS_START = '[Heroes Filters] REQUEST_FILTERS_START';
+export const REQUEST_FILTERS_SUCCESS = '[Heroes Filters] REQUEST_FILTERS_SUCCESS';
+export const REQUEST_FILTERS_ERROR = '[Heroes Filters] REQUEST_FILTERS_ERROR';
+
+export const CHANGE_SELECTED_FILTERS = '[Heroes Filters] CHANGE_SELECTED_FILTERS';

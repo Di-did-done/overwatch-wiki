@@ -1,0 +1,61 @@
+{
+    "extends": [
+        "tslint:recommended"
+    ],
+    "rules": {
+        "ban": [true, ["fit"], ["fdescribe"], ["xit"], ["xdescribe"]],
+
+        "import-blacklist": [true, "rxjs"],
+
+        "interface-name": [true, "never-prefix"],
+
+        "linebreak-style": [true, "LF"],
+
+        "max-file-line-count": [true, 350],
+
+        "member-access": false,
+
+        "newline-before-return": true,
+
+        "no-for-in-array": true,
+
+        "no-consecutive-blank-lines": [true, 2],
+
+        "no-console": [true, "log"],
+
+        "no-default-export": true,
+
+        "no-invalid-template-strings": true,
+
+        "no-unused-variable": true,
+
+        "object-literal-sort-keys": false,
+
+        "one-line": [
+            true,
+            "check-open-brace",
+            "check-catch",
+            "check-else",
+            "check-whitespace"
+        ],
+
+        "ordered-imports": false,
+
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape"
+        ],
+
+        "space-before-function-paren": [true, {
+            "anonymous": "always",
+            "constructor": "never",
+            "method": "never",
+            "named": "never"
+        }],
+
+        "switch-default": true,
+
+        "trailing-comma": false
+    }
+}

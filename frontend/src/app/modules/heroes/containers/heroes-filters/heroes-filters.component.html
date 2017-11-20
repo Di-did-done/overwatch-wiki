@@ -1,0 +1,19 @@
+<div class="heroes-filters">
+    <div class="flex layout-row layout-align-center center layout-padding" ng-if="$ctrl.loading">
+        <md-progress-circular class="md-accent" md-diameter="40" md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <div ng-if="!$ctrl.loading" class="layout-row">
+        <md-input-container md-no-float class="md-icon-float md-block">
+            <input type="text" placeholder="Поиск по имени" ng-model="$ctrl.selectedFilters.name" ng-model-options="{debounce: 500}" ng-change="$ctrl.onChangeSelected()">
+        </md-input-container>
+
+        <md-input-container>
+            <label>Роль</label>
+            <md-select ng-model="$ctrl.selectedFilters.role" ng-change="$ctrl.onChangeSelected()">
+                <md-option value=""><em>Все</em></md-option>
+                <md-option ng-repeat="role in $ctrl.filters.roles" ng-value="role.id">{{role.name}}</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+</div>

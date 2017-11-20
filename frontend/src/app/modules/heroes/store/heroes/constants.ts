@@ -1,0 +1,5 @@
+export const REQUEST_HEROES_START = '[Heroes] REQUEST_HEROES_START';
+export const REQUEST_HEROES_SUCCESS = '[Heroes] REQUEST_HEROES_SUCCESS';
+export const REQUEST_HEROES_ERROR = '[Heroes] REQUEST_HEROES_ERROR';
+
+export const SELECT_HERO = '[Heroes] SELECT_HERO';
