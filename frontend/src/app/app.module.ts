@@ -5,7 +5,8 @@ import { ngReduxModule } from './core/redux';
 
 import { CoreModule } from './core';
 
-import { HeroesModule } from './modules/heroes/';
+import { HeroesModule } from './modules/heroes';
+import { MapsModule } from './modules/maps';
 
 import { AppComponent } from './app.component';
 import { appReducer } from './app.reducer';
@@ -23,7 +24,8 @@ export const AppModule = angular
 
         CoreModule.name,
 
-        HeroesModule.name
+        HeroesModule.name,
+        MapsModule.name
     ])
 
     .component('app', AppComponent)

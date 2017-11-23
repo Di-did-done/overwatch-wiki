@@ -1,0 +1,25 @@
+<section class="maps-list layout-column flex layout-padding">
+    <div class="flex layout-row layout-align-center center layout-padding" ng-if="$ctrl.loadingMaps || $ctrl.loadingTypes">
+        <md-progress-circular class="md-accent" md-diameter="40" md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <div ng-if="!$ctrl.loadingMaps && !$ctrl.loadingTypes">
+        <div class="layout-column" ng-repeat="type in $ctrl.types">
+            <h3>{{ type.name }}</h3>
+
+            <div class="layout-row layout-align-stretch-start layout-wrap">
+                <md-card class="map-card" ng-repeat="map in $ctrl.mapsByType[type.id]">
+                    <img ng-src="{{$ctrl.imagePath}}/{{map.id}}.jpg" class="md-card-image">
+                    <md-card-title class="flex-none">
+                        <md-card-title-text>
+                            <span class="md-headline">{{ map.name }}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p>{{ map.description }}</p>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</section>
