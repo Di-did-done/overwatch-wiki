@@ -44,6 +44,8 @@ class HeroesListController {
     }
 }
 
+HeroesListController.$inject = ['$ngRedux'];
+
 export const HeroesListComponent = {
     controller: HeroesListController,
     template: require('./heroes-list.component.html')

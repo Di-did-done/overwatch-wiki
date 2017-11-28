@@ -1,44 +1,19 @@
-import angular from 'angular';
-import { createEpicMiddleware } from 'redux-observable';
-
-import { ngReduxModule } from './core/redux';
-
-import { CoreModule } from './core';
-
-import { HeroesModule } from './modules/heroes';
-import { MapsModule } from './modules/maps';
-
-import { AppComponent } from './app.component';
-import { appReducer } from './app.reducer';
-import { AppRoutesConfig } from './app.routes';
-import { appEffects } from './app.effects';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { UpgradeModule } from '@angular/upgrade/static';
+import { AppModuleAjs } from './app.module.ajs';
 
 
-export const AppModule = angular
-    .module('app', [
-        'ngAnimate',
-        'ngMaterial',
-        'ui.router',
+@NgModule({
+    imports: [
+        BrowserModule,
+        UpgradeModule
+    ]
+})
+export class AppModule {
+    constructor(private upgrade: UpgradeModule) {}
 
-        ngReduxModule.name,
-
-        CoreModule.name,
-
-        HeroesModule.name,
-        MapsModule.name
-    ])
-
-    .component('app', AppComponent)
-
-    .config([
-        ...AppRoutesConfig
-    ])
-
-    .config(['$ngReduxProvider',
-        ($ngReduxProvider) => {
-            $ngReduxProvider.createStoreWith(
-                { app: appReducer },
-                ['apiMiddleware', createEpicMiddleware(appEffects)],
-                [window.devToolsExtension ? window.devToolsExtension() : (f) => f]
-            );
-        }]);
+    ngDoBootstrap() {
+        this.upgrade.bootstrap(document.body, [AppModuleAjs.name], { strictDi: true });
+    }
+}

@@ -1,4 +1,4 @@
-import angular from 'angular';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import './polyfills';
 import './vendor';
@@ -6,4 +6,4 @@ import './vendor';
 import { AppModule } from './app';
 
 
-angular.bootstrap(document, [AppModule.name]);
+platformBrowserDynamic().bootstrapModule(AppModule);
