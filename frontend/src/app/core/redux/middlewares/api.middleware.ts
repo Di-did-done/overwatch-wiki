@@ -1,9 +1,9 @@
-export const apiMiddleware = ($injector, $q) => {
+export const apiMiddleware = ($injector) => {
     return (store) => (next) => (action) => {
         const { callApi, ...restAction } = action;
 
         if (!callApi) {
-            return $q.when(next(action));
+            return Promise.resolve(next(action));
         }
 
         const { types, method, serviceName, params } = callApi;
@@ -22,7 +22,7 @@ export const apiMiddleware = ($injector, $q) => {
 
         actionWith(requestType);
 
-        return $q((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             service[method](...params)
                 .then((response) => {
                     const payload = {
@@ -34,9 +34,9 @@ export const apiMiddleware = ($injector, $q) => {
 
                     return actionWith(successType, payload);
                 })
-                .catch((response: { data: { error: string } }) => {
+                .catch((response: { error: string }) => {
                     const payload = {
-                        error: response.data.error,
+                        error: response.error,
                         ...restAction.payload
                     };
 
@@ -49,7 +49,6 @@ export const apiMiddleware = ($injector, $q) => {
 };
 
 apiMiddleware.$inject = [
-    '$injector',
-    '$q'
+    '$injector'
 ];
 

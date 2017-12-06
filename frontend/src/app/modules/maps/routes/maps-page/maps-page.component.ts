@@ -1,5 +1,9 @@
-import './maps-page.component.less';
+import { Component } from '@angular/core';
 
-export const MapsPageComponent = {
-    template: require('./maps-page.component.html')
-};
+
+@Component({
+    selector: 'maps-page',
+    template: require('./maps-page.component.html'),
+    styles: [require('./maps-page.component.less').toString()]
+})
+export class MapsPageComponent {}

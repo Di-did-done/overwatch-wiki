@@ -1,24 +1,24 @@
 <section class="maps-list layout-column flex layout-padding">
-    <div class="flex layout-row layout-align-center center layout-padding" ng-if="$ctrl.loadingMaps || $ctrl.loadingTypes">
-        <md-progress-circular class="md-accent" md-diameter="40" md-mode="indeterminate"></md-progress-circular>
+    <div class="flex layout-row layout-align-center center layout-padding" *ngIf="loadingMaps || loadingTypes">
+        <mat-spinner [diameter]="40"></mat-spinner>
     </div>
 
-    <div ng-if="!$ctrl.loadingMaps && !$ctrl.loadingTypes">
-        <div class="layout-column" ng-repeat="type in $ctrl.types">
+    <div *ngIf="!loadingMaps && !loadingTypes">
+        <div class="layout-column" *ngFor="let type of types">
             <h3>{{ type.name }}</h3>
 
             <div class="layout-row layout-align-stretch-start layout-wrap">
-                <md-card class="map-card" ng-repeat="map in $ctrl.mapsByType[type.id]">
-                    <img ng-src="{{$ctrl.imagePath}}/{{map.id}}.jpg" class="md-card-image">
-                    <md-card-title class="flex-none">
-                        <md-card-title-text>
+                <mat-card class="map-card" *ngFor="let map of mapsByType[type.id]">
+                    <img mat-card-image [src]="getMapImage(map.id)" class="md-card-image">
+                    <mat-card-header class="flex-none">
+                        <mat-card-title>
                             <span class="md-headline">{{ map.name }}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
                         <p>{{ map.description }}</p>
-                    </md-card-content>
-                </md-card>
+                    </mat-card-content>
+                </mat-card>
             </div>
         </div>
     </div>

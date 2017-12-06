@@ -6,9 +6,7 @@ export class HeroesFiltersApiService {
     constructor(public BaseHttpService: BaseHttpService) {}
 
     getList() {
-        return this.BaseHttpService.getList(this.url).then((response) => {
-            return response.data;
-        });
+        return this.BaseHttpService.getList(this.url);
     }
 }
 

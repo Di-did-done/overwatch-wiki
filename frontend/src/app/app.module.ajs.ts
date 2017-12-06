@@ -3,10 +3,10 @@ import { createEpicMiddleware } from 'redux-observable';
 
 import { ngReduxModule } from './core/redux';
 
-import { CoreModule } from './core';
+import { CoreModuleAjs } from './core';
 
 import { HeroesModule } from './modules/heroes';
-import { MapsModule } from './modules/maps';
+import { MapsModuleAjs } from './modules/maps';
 
 import { AppComponent } from './app.component';
 import { appReducer } from './app.reducer';
@@ -22,10 +22,10 @@ export const AppModuleAjs = angular
 
         ngReduxModule.name,
 
-        CoreModule.name,
+        CoreModuleAjs.name,
 
         HeroesModule.name,
-        MapsModule.name
+        MapsModuleAjs.name
     ])
 
     .component('app', AppComponent)
