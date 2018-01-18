@@ -7,10 +7,15 @@ import { MapsTypesApiService } from './services/maps-types.api.service';
 
 import { MapsListComponent } from './containers';
 import { MapsPageComponent } from './routes';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
         CommonModule,
+
+        RouterModule.forChild([
+            { path: '', component: MapsPageComponent }
+        ]),
 
         MatProgressSpinnerModule,
         MatCardModule
@@ -27,4 +32,5 @@ import { MapsPageComponent } from './routes';
         MapsPageComponent
     ]
 })
-export class MapsModule {}
+export class MapsModule {
+}

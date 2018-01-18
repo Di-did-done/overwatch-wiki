@@ -5,7 +5,7 @@ export const MapsRoutesConfig = [
             .state('maps', {
                 name: 'maps',
                 url: '/maps',
-                component: 'mapsPage'
+                template: ''
             });
     }
 ];

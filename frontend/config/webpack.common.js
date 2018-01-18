@@ -123,7 +123,15 @@ module.exports = {
              */
             {
                 test: /\.ts$/,
-                use: 'awesome-typescript-loader?{configFileName: "tsconfig.json"}',
+                use: [
+                    {
+                        loader: 'awesome-typescript-loader',
+                        options: {
+                            configFileName: 'tsconfig.json'
+                        }
+                    },
+                    'angular-router-loader'
+                ],
                 exclude: [
                     nodeModules,
                     /\.(spec|e2e)\.ts$/

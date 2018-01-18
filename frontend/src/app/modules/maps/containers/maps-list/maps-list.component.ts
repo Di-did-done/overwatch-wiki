@@ -41,8 +41,8 @@ export class MapsListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.loadMapsAction();
-        this.loadMapsTypesAction();
+        // this.loadMapsAction();
+        // this.loadMapsTypesAction();
     }
 
     ngOnDestroy() {
@@ -55,10 +55,10 @@ export class MapsListComponent implements OnInit, OnDestroy {
 
     _mapStateToThis(state) {
         return {
-            loadingMaps: getMapsLoading(state),
+            /*loadingMaps: getMapsLoading(state),
             loadingTypes: getTypesLoading(state),
             mapsByType: getMapsByType(state),
-            types: getMapsTypes(state)
+            types: getMapsTypes(state)*/
         };
     }
 }

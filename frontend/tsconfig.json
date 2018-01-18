@@ -9,9 +9,10 @@
         "allowJs": true,
         "sourceMap": true,
         "lib": [
-            "dom",
-            "es6"
+            "es2017",
+            "dom"
         ],
+        "baseUrl": ".",
         "typeRoots": [
             "node_modules/@types"
         ],
@@ -29,15 +30,5 @@
         "node_modules",
         "dist",
         "dist-dll"
-    ],
-    "awesomeTypescriptLoaderOptions": {
-        "useWebpackText": true,
-        "forkChecker": true
-    },
-    "angularCompilerOptions": {
-        "genDir": "./compiled",
-        "skipMetadataEmit": true
-    },
-    "compileOnSave": false,
-    "buildOnSave": false
+    ]
 }
