@@ -1,5 +1,5 @@
 export const apiMiddleware = ($injector) => {
-    return (store) => (next) => (action) => {
+    return () => (next) => (action) => {
         const { callApi, ...restAction } = action;
 
         if (!callApi) {

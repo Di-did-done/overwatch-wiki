@@ -3,8 +3,8 @@ import { Location, PopStateEvent } from '@angular/common';
 
 @Component({
     selector: 'app',
-    template: require('./app.component.html'),
-    styles: [require('./app.component.less').toString()]
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.less']
 })
 export class AppComponent {
     activeModule: string;

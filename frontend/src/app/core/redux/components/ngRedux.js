@@ -5,7 +5,7 @@ import invariant from 'invariant';
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import {addReducer, removeReducer} from '../utils/dynamicReducers';
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 const typeIs = _.curry((type, val) => typeof val === type);
 const isObject = typeIs('object');

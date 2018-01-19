@@ -6,9 +6,9 @@ import { BaseHttpService } from '../../../core/services/base-http.service';
 export class MapsTypesApiService {
     url: string = '/maps/types';
 
-    constructor(private BaseHttpService: BaseHttpService) {}
+    constructor(private baseHttpService: BaseHttpService) {}
 
-    getList(): Promise<string[]> {
-        return this.BaseHttpService.getList(this.url);
+    getList() {
+        return this.baseHttpService.getList(this.url);
     }
 }

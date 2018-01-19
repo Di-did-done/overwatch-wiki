@@ -12,16 +12,16 @@ interface HeroResponse {
 export class HeroesApiService {
     url: string = '/heroes';
 
-    constructor(private BaseHttpService: BaseHttpService) {}
+    constructor(private baseHttpService: BaseHttpService) {}
 
     getList(options) {
-        return this.BaseHttpService.getList(this.url, options).then((response: HeroesListResponse) => {
+        return this.baseHttpService.getList(this.url, options).then((response: HeroesListResponse) => {
             return response.data;
         });
     }
 
     getOne(id: string) {
-        return this.BaseHttpService.getOne(this.url, id).then((response: HeroResponse) => {
+        return this.baseHttpService.getOne(this.url, id).then((response: HeroResponse) => {
             return response.data;
         });
     }

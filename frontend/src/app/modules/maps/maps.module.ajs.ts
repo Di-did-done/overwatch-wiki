@@ -1,4 +1,4 @@
-import angular from 'angular';
+import * as angular from 'angular';
 import { combineReducers } from 'redux';
 
 import { MapsRoutesConfig } from './maps.routes';

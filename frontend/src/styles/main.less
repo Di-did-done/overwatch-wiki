@@ -1,5 +1,8 @@
-@import (once) '~angular-material/angular-material.css';
+@import (once) 'angular-material/angular-material.css';
 @import (once) '~font-awesome/less/font-awesome.less';
-@import (once) '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import (once) '@angular/material/prebuilt-themes/indigo-pink.css';
 
 @import 'app.less';
+
+// import AngularJS styles here, because import in .ts file doesn't work
+@import '../app/modules/heroes/heroes.style.less';

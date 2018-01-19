@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 import invariant from 'invariant';
 import { combineReducers } from 'redux';
 

@@ -1,18 +1,22 @@
-import { StaticProvider } from '@angular/core';
+import { enableProdMode, StaticProvider } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import {downgradeComponent, downgradeModule } from '@angular/upgrade/static';
+import { downgradeComponent, downgradeModule, setAngularJSGlobal } from '@angular/upgrade/static';
 
 import * as angular from 'angular';
 
-import './polyfills';
-import './vendor';
+import { environment } from './environments/environment';
 
 import { AppModule } from './app';
 import { AppModuleAjs } from './app/app.module.ajs';
 import { AppComponent } from './app/app.component';
 
+setAngularJSGlobal(angular);
 
-export function bootstrapAngular(extra: StaticProvider[]) {
+export function bootstrapAngular(extra: StaticProvider[]): any {
+    if (environment.production) {
+        enableProdMode();
+    }
+
     return platformBrowserDynamic(extra)
         .bootstrapModule(AppModule)
         .catch((err) => console.warn(err));
@@ -25,7 +29,7 @@ const downgraded = angular
 AppModuleAjs
     .component(
         'angularjsRouterOutlet',
-        { template: '<ui-view class="flex layout-column layout-fill"></ui-view>' }
+        { template: '<ui-view class="flex layout-column"></ui-view>' }
     );
 
 

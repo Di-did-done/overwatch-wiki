@@ -1,4 +1,7 @@
-import angular from 'angular';
+import '../vendor';
+
+import * as angular from 'angular';
+
 import { createEpicMiddleware } from 'redux-observable';
 
 import { ngReduxModule } from './core/redux';

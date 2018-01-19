@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 import { loadFiltersAction, changeSelectedFiltersAction } from '../../store/filters/actions';
 import { getFilters, getFiltersLoading, getSelectedFilters } from '../../store/filters/selectors';

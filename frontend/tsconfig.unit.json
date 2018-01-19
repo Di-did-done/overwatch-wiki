@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noEmitOnError": true,
+        "allowJs": true,
+        "noImplicitAny": false,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "outDir": "./dist",
+        "rootDir": "./",
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "target": "es6",
+        "lib": [
+            "es2015",
+            "es2016",
+            "dom"
+        ],
+        "baseUrl": "",
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": [
+            "node"
+        ]
+    },
+    "exclude": [
+        ".tmp/**/*",
+        "build/**/*",
+        "dist-dll/**/*",
+        "dist/**/*",
+        "node_modules",
+        "node_modules/**/*",
+        "**/*/node_modules"
+    ],
+    "compileOnSave": false,
+    "buildOnSave": false
+}

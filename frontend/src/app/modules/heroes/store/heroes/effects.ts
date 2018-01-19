@@ -6,6 +6,7 @@ import { getSelectedFilters } from '../filters/selectors';
 import { loadHeroesAction, selectHeroAction } from './actions';
 import { REQUEST_HEROES_SUCCESS } from './constants';
 import { getHeroes } from './selectors';
+import { Hero } from '../../models/hero.model';
 
 
 export const loadFilteredHeroesEffect = (action$, store) =>
@@ -26,7 +27,7 @@ export const selectHeroAfterLoadingEffect = (action$, store) =>
         .ofType(REQUEST_HEROES_SUCCESS)
         .pipe(
             map(() => {
-                const heroes = getHeroes(store.getState());
+                const heroes = getHeroes(store.getState()) as Hero[];
 
                 return selectHeroAction(heroes.length ? heroes[0].id : undefined);
             })

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { createSelector } from 'reselect';
 
 export const getMapsLoading = (state) => state.mapsModule.maps.loading;

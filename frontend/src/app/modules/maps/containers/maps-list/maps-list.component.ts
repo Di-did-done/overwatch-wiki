@@ -1,5 +1,3 @@
-import './maps-list.component.less';
-
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { NgRedux } from '../../../../ajs-upgraded-providers';
@@ -14,7 +12,8 @@ import { MapType } from '../../models/map-type.model';
 
 @Component({
     selector: 'maps-list',
-    template: require('./maps-list.component.html')
+    templateUrl: './maps-list.component.html',
+    styleUrls: ['./maps-list.component.less']
 })
 export class MapsListComponent implements OnInit, OnDestroy {
     // Actions
@@ -53,7 +52,7 @@ export class MapsListComponent implements OnInit, OnDestroy {
         return `${this.imagePath}/${mapId}.jpg`;
     }
 
-    _mapStateToThis(state) {
+    _mapStateToThis() {
         return {
             /*loadingMaps: getMapsLoading(state),
             loadingTypes: getTypesLoading(state),

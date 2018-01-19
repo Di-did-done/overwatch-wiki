@@ -1,4 +1,4 @@
-import angular from 'angular';
+import * as angular from 'angular';
 
 import ngReduxProvider from './components/ngRedux';
 import { apiMiddleware } from './middlewares/api.middleware';
