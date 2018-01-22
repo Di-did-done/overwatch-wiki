@@ -18,6 +18,10 @@
         "@uirouter/angularjs": "1.0.13",
         "@uirouter/core": "5.0.14",
 
+        "@ngrx/store": "4.1.1",
+        "@ngrx/store-devtools": "4.1.1",
+        "@ngrx/effects": "4.1.1",
+
         "zone.js": "0.8.18",
 
         "angular": "1.5.11",

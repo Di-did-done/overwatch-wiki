@@ -1,63 +1,52 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
-import { NgRedux } from '../../../../ajs-upgraded-providers';
-
-import { loadMapsAction } from '../../store/maps/actions';
-import { getMapsByType, getMapsLoading } from '../../store/maps/selectors';
 import { MapModel } from '../../models/map.model';
-
-import { loadMapsTypesAction } from '../../store/maps-types/actions';
-import { getMapsTypes, getTypesLoading } from '../../store/maps-types/selectors';
 import { MapType } from '../../models/map-type.model';
+
+import { MapsModuleState } from '../../store/maps.state';
+
+import { getMapsByType, getMapsLoading } from '../../store/maps/selectors';
+import { LoadMapsAction } from '../../store/maps/actions';
+
+import { getMapsTypes, getMapsTypesLoading } from '../../store/maps-types/selectors';
+import { LoadMapsTypesAction } from '../../store/maps-types/actions';
+
 
 @Component({
     selector: 'maps-list',
     templateUrl: './maps-list.component.html',
     styleUrls: ['./maps-list.component.less']
 })
-export class MapsListComponent implements OnInit, OnDestroy {
-    // Actions
-    loadMapsAction;
-    loadMapsTypesAction;
-
-    // From Store
-    loadingMaps: boolean;
-    loadingTypes: boolean;
-    types: MapType[];
-    mapsByType: {
-        [type: string]: MapModel[]
-    };
+export class MapsListComponent implements OnInit {
+    mapsByType$: Observable<{ [mapType: string]: MapModel[] }>;
+    types$: Observable<MapType[]>;
+    loadingMaps$: Observable<boolean>;
+    loadingTypes$: Observable<boolean>;
 
     // Local Variables
-    unsubscribe: () => void;
     imagePath: string = '../../../../../assets/images/maps';
 
-    constructor($ngRedux: NgRedux) {
-        this.unsubscribe = $ngRedux.connect(this._mapStateToThis, {
-            loadMapsAction,
-            loadMapsTypesAction
-        })(this);
+    constructor(private store: Store<MapsModuleState>) {
     }
 
     ngOnInit() {
-        // this.loadMapsAction();
-        // this.loadMapsTypesAction();
-    }
+        this.mapState();
 
-    ngOnDestroy() {
-        this.unsubscribe();
+        this.store.dispatch(new LoadMapsAction());
+        this.store.dispatch(new LoadMapsTypesAction());
     }
 
     getMapImage(mapId: string): string {
         return `${this.imagePath}/${mapId}.jpg`;
     }
 
-    _mapStateToThis() {
-        return {
-            /*loadingMaps: getMapsLoading(state),
-            loadingTypes: getTypesLoading(state),
-            mapsByType: getMapsByType(state),
-            types: getMapsTypes(state)*/
-        };
+    private mapState() {
+        this.loadingMaps$ = this.store.select(getMapsLoading);
+        this.loadingTypes$ = this.store.select(getMapsTypesLoading);
+
+        this.mapsByType$ = this.store.select(getMapsByType);
+        this.types$ = this.store.select(getMapsTypes);
     }
 }

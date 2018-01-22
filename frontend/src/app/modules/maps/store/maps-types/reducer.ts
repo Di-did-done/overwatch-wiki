@@ -1,21 +1,22 @@
-import * as ActionTypes from './constants';
 import { MapType } from '../../models/map-type.model';
 
-interface MapsTypesState {
-    loadingMaps: boolean;
+import * as ActionTypes from './constants';
+import { MapsTypesActions } from './actions';
+
+
+export interface MapsTypesState {
+    loading: boolean;
     list: MapType[];
 }
 
 const INITIAL_STATE: MapsTypesState = {
-    loadingMaps: false,
+    loading: false,
     list: []
 };
 
-export const mapsTypesReducer = (state: MapsTypesState = INITIAL_STATE, action) => {
-    const { type, payload } = action;
-
-    switch (type) {
-        case ActionTypes.REQUEST_MAPS_TYPES_START: {
+export const mapsTypesReducer = (state: MapsTypesState = INITIAL_STATE, action: MapsTypesActions) => {
+    switch (action.type) {
+        case ActionTypes.REQUEST_MAPS_TYPES: {
             return {
                 ...state,
                 loading: true
@@ -30,7 +31,7 @@ export const mapsTypesReducer = (state: MapsTypesState = INITIAL_STATE, action) 
         case ActionTypes.REQUEST_MAPS_TYPES_SUCCESS: {
             return {
                 ...state,
-                list: payload.apiResponse,
+                list: action.payload,
                 loading: false
             };
         }

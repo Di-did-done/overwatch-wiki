@@ -5,8 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeComponent } from '@angular/upgrade/static';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
 import { Router, RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { ngReduxProvider } from './ajs-upgraded-providers';
+import { environment } from '../environments/environment';
 
 import { CoreModule } from './core';
 
@@ -48,15 +51,16 @@ export class AngularJSRouterOutletDirective extends UpgradeComponent {
             }
         ),
 
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+
         MatToolbarModule,
         MatButtonModule,
 
         CoreModule,
 
         MapsModule
-    ],
-    providers: [
-        ngReduxProvider
     ],
     declarations: [
         AppComponent,

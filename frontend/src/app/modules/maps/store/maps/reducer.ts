@@ -1,25 +1,24 @@
-import * as ActionTypes from './constants';
-
 import { MapModel } from '../../models/map.model';
 
+import * as ActionTypes from './constants';
+import { MapsActions } from './actions';
 
-interface MapsState {
-    loadingMaps: boolean;
-    listById: {
+
+export interface MapsState {
+    loading: boolean;
+    entities: {
         [mapId: string]: MapModel;
     };
 }
 
 const INITIAL_STATE: MapsState = {
-    loadingMaps: false,
-    listById: {}
+    loading: false,
+    entities: {}
 };
 
-export const mapsReducer = (state: MapsState = INITIAL_STATE, action) => {
-    const { type, payload } = action;
-
-    switch (type) {
-        case ActionTypes.REQUEST_MAPS_START: {
+export const mapsReducer = (state: MapsState = INITIAL_STATE, action: MapsActions): MapsState => {
+    switch (action.type) {
+        case ActionTypes.REQUEST_MAPS: {
             return {
                 ...state,
                 loading: true
@@ -32,16 +31,20 @@ export const mapsReducer = (state: MapsState = INITIAL_STATE, action) => {
             };
         }
         case ActionTypes.REQUEST_MAPS_SUCCESS: {
-            const maps = payload.apiResponse;
-            const listById = {};
-
-            maps.forEach((map: MapModel) => {
-               listById[map.id] = map;
-            });
+            const maps = action.payload;
+            const entities = maps.reduce(
+                (mapsById: { [mapId: string]: MapModel }, map: MapModel) => {
+                    return {
+                        ...mapsById,
+                        [map.id]: map
+                    };
+                },
+                {}
+            );
 
             return {
                 ...state,
-                listById,
+                entities,
                 loading: false
             };
         }

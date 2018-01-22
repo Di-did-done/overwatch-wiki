@@ -1,10 +1,22 @@
 import * as _ from 'lodash';
-import { createSelector } from 'reselect';
+import { createSelector } from '@ngrx/store';
 
-export const getMapsLoading = (state) => state.mapsModule.maps.loading;
-export const getMapsById = (state) => state.mapsModule.maps.listById;
+import { MapsState } from './reducer';
+import { getMapsState } from '../maps.state';
+import { MapModel } from '../../models/map.model';
+
+
+export const getMapsLoading = createSelector(
+    getMapsState,
+    (state: MapsState) => state.loading
+);
+
+export const getMapsEntities = createSelector(
+    getMapsState,
+    (state: MapsState) => state.entities
+);
 
 export const getMapsByType = createSelector(
-    getMapsById,
-    (mapsById) => _.groupBy(mapsById, 'type')
+    getMapsEntities,
+    (mapsEntities: { [id: string]: MapModel }) => _.groupBy(mapsEntities, 'type')
 );

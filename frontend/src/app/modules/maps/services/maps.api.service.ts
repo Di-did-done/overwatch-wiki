@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { BaseHttpService } from '../../../core/services/base-http.service';
+
+import { MapModel } from '../models/map.model';
 
 
 @Injectable()
@@ -9,7 +12,7 @@ export class MapsApiService {
 
     constructor(private baseHttpService: BaseHttpService) {}
 
-    getList() {
-        return this.baseHttpService.getList(this.url);
+    getList(): Observable<MapModel[]> {
+        return this.baseHttpService.getList<MapModel[]>(this.url);
     }
 }

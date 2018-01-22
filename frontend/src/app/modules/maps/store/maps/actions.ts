@@ -1,13 +1,23 @@
-import * as ActionTypes from './constants';
+import { Action } from '@ngrx/store';
 
-export const loadMapsAction = () => ({
-    callApi: {
-        types: [
-            ActionTypes.REQUEST_MAPS_START,
-            ActionTypes.REQUEST_MAPS_SUCCESS,
-            ActionTypes.REQUEST_MAPS_ERROR
-        ],
-        serviceName: 'MapsApiService',
-        method: 'getList'
-    }
-});
+import * as ActionTypes from './constants';
+import { MapModel } from '../../models/map.model';
+
+
+export class LoadMapsAction implements Action {
+    readonly type = ActionTypes.REQUEST_MAPS;
+}
+
+export class LoadMapsSuccessAction implements Action {
+    readonly type = ActionTypes.REQUEST_MAPS_SUCCESS;
+
+    constructor(public payload: MapModel[]) {}
+}
+
+export class LoadMapsErrorAction implements Action {
+    readonly type = ActionTypes.REQUEST_MAPS_ERROR;
+
+    constructor(public payload: any) {}
+}
+
+export type MapsActions = LoadMapsAction | LoadMapsSuccessAction | LoadMapsErrorAction;

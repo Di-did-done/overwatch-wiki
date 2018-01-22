@@ -11,9 +11,13 @@
 
         "linebreak-style": [true, "LF"],
 
+        "max-classes-per-file": false,
+
         "max-file-line-count": [true, 350],
 
         "member-access": false,
+
+        "member-ordering": false,
 
         "newline-before-return": true,
 

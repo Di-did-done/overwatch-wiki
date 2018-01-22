@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 
 import { MapsApiService } from './services/maps.api.service';
@@ -7,7 +10,10 @@ import { MapsTypesApiService } from './services/maps-types.api.service';
 
 import { MapsListComponent } from './containers';
 import { MapsPageComponent } from './routes';
-import { RouterModule } from '@angular/router';
+
+import { reducers } from './store/maps.state';
+import { effects } from './store/maps.effects';
+
 
 @NgModule({
     imports: [
@@ -16,6 +22,9 @@ import { RouterModule } from '@angular/router';
         RouterModule.forChild([
             { path: '', component: MapsPageComponent }
         ]),
+
+        StoreModule.forFeature('mapsModule', reducers),
+        EffectsModule.forFeature(effects),
 
         MatProgressSpinnerModule,
         MatCardModule
