@@ -1,20 +1,20 @@
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+
 import { MapModel } from '../../models/map.model';
 
 import * as ActionTypes from './constants';
 import { MapsActions } from './actions';
 
 
-export interface MapsState {
+export interface MapsState extends EntityState<MapModel> {
     loading: boolean;
-    entities: {
-        [mapId: string]: MapModel;
-    };
 }
 
-const INITIAL_STATE: MapsState = {
-    loading: false,
-    entities: {}
-};
+export const mapsAdapter: EntityAdapter<MapModel> = createEntityAdapter<MapModel>();
+
+const INITIAL_STATE: MapsState = mapsAdapter.getInitialState({
+    loading: false
+});
 
 export const mapsReducer = (state: MapsState = INITIAL_STATE, action: MapsActions): MapsState => {
     switch (action.type) {
@@ -31,22 +31,12 @@ export const mapsReducer = (state: MapsState = INITIAL_STATE, action: MapsAction
             };
         }
         case ActionTypes.REQUEST_MAPS_SUCCESS: {
-            const maps = action.payload;
-            const entities = maps.reduce(
-                (mapsById: { [mapId: string]: MapModel }, map: MapModel) => {
-                    return {
-                        ...mapsById,
-                        [map.id]: map
-                    };
-                },
-                {}
-            );
+            const maps: MapModel[] = action.payload;
 
-            return {
+            return mapsAdapter.addAll(maps, {
                 ...state,
-                entities,
                 loading: false
-            };
+            });
         }
         default:
             return state;
