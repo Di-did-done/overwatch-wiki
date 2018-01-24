@@ -1,42 +1,20 @@
 {
+    "extends": "./tsconfig.json",
     "compilerOptions": {
-        "declaration": false,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
+        "outDir": "./out-tsc/spec",
         "module": "commonjs",
-        "moduleResolution": "node",
-        "noEmitOnError": true,
-        "allowJs": true,
-        "noImplicitAny": false,
-        "noUnusedParameters": true,
-        "noUnusedLocals": true,
-        "outDir": "./dist",
-        "rootDir": "./",
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "target": "es6",
-        "lib": [
-            "es2015",
-            "es2016",
-            "dom"
-        ],
+        "target": "es5",
         "baseUrl": "",
-        "typeRoots": [
-            "./node_modules/@types"
-        ],
         "types": [
+            "jasmine",
             "node"
         ]
     },
-    "exclude": [
-        ".tmp/**/*",
-        "build/**/*",
-        "dist-dll/**/*",
-        "dist/**/*",
-        "node_modules",
-        "node_modules/**/*",
-        "**/*/node_modules"
+    "files": [
+        "src/test.ts"
     ],
-    "compileOnSave": false,
-    "buildOnSave": false
+    "include": [
+        "**/*.spec.ts",
+        "**/*.d.ts"
+    ]
 }

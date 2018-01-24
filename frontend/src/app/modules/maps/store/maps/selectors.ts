@@ -10,9 +10,7 @@ export const getMapsLoading = createSelector(
     (state: MapsState) => state.loading
 );
 
-export const {
-    selectEntities: getMapsEntities
-} = mapsAdapter.getSelectors(getMapsState);
+export const getMapsEntities = mapsAdapter.getSelectors(getMapsState).selectEntities;
 
 export const getMapsByType = createSelector(
     getMapsEntities,

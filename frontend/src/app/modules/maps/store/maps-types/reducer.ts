@@ -12,7 +12,7 @@ export interface MapsTypesState extends EntityState<MapType> {
 
 export const mapsTypesAdapter: EntityAdapter<MapType> = createEntityAdapter<MapType>();
 
-const INITIAL_STATE: MapsTypesState = mapsTypesAdapter.getInitialState({
+export const INITIAL_STATE: MapsTypesState = mapsTypesAdapter.getInitialState({
     loading: false
 });
 
