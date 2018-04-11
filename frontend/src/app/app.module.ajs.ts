@@ -6,7 +6,7 @@ import { ngReduxModule } from './core/redux';
 import { CoreModule } from './core';
 
 import { HeroesModule } from './modules/heroes';
-import { MapsModule } from './modules/maps';
+import { MapsModuleAjs } from './modules/maps';
 
 import { appReducer } from './app.reducer';
 import { AppRoutesConfig } from './app.routes';
@@ -24,7 +24,7 @@ export const AppModuleAjs = angular
         CoreModule.name,
 
         HeroesModule.name,
-        MapsModule.name
+        MapsModuleAjs.name
     ])
 
     .component('angularjsRouterOutlet', { template: '<ui-view class="layout-column flex"></ui-view>' })

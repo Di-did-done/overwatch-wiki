@@ -6,6 +6,9 @@ import { MatToolbarModule, MatButtonModule } from '@angular/material';
 import { UpgradeComponent } from '@angular/upgrade/static';
 
 import { AppComponent } from './app.component';
+import { MapsModule } from './modules/maps';
+import { ngReduxProvider } from './ajs-upgraded-provider';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Directive({ selector: 'angularjs-router-outlet' })
@@ -18,11 +21,14 @@ export class AngularjsRouterOutletDirective extends UpgradeComponent {
 @NgModule({
     imports: [
         BrowserModule,
+        HttpClientModule,
 
         RouterModule.forRoot([]),
 
         MatToolbarModule,
-        MatButtonModule
+        MatButtonModule,
+
+        MapsModule
     ],
     declarations: [
         AppComponent,
@@ -30,6 +36,9 @@ export class AngularjsRouterOutletDirective extends UpgradeComponent {
     ],
     entryComponents: [
         AppComponent
+    ],
+    providers: [
+        ngReduxProvider
     ]
 })
 export class AppModule {

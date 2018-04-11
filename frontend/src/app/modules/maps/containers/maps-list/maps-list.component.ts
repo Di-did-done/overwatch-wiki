@@ -1,4 +1,7 @@
-import './maps-list.component.less';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Unsubscribe } from 'redux';
+
+import { NgRedux } from '../../../../ajs-upgraded-provider';
 
 import { loadMapsAction } from '../../store/maps/actions';
 import { getMapsByType, getMapsLoading } from '../../store/maps/selectors';
@@ -8,7 +11,13 @@ import { loadMapsTypesAction } from '../../store/maps-types/actions';
 import { getMapsTypes, getTypesLoading } from '../../store/maps-types/selectors';
 import { MapType } from '../../models/map-type.model';
 
-class MapsListController {
+
+@Component({
+    selector: 'maps-list',
+    template: require('./maps-list.component.html'),
+    styles: [require('./maps-list.component.less').toString()]
+})
+export class MapsListComponent implements OnInit, OnDestroy {
     // Actions
     loadMapsAction;
     loadMapsTypesAction;
@@ -22,26 +31,30 @@ class MapsListController {
     };
 
     // Local Variables
-    unsubscribe: () => void;
+    unsubscribe: Unsubscribe;
     imagePath: string = '../../../../../assets/images/maps';
 
-    constructor($ngRedux) {
-        this.unsubscribe = $ngRedux.connect(this._mapStateToThis, {
+    constructor($ngRedux: NgRedux) {
+        this.unsubscribe = $ngRedux.connect(this.mapStateToThis, {
             loadMapsAction,
             loadMapsTypesAction
         })(this);
     }
 
-    $onInit() {
+    ngOnInit() {
         this.loadMapsAction();
         this.loadMapsTypesAction();
     }
 
-    $onDestroy() {
+    ngOnDestroy() {
         this.unsubscribe();
     }
 
-    _mapStateToThis(state) {
+    getMapImage(mapId: string): string {
+        return `${this.imagePath}/${mapId}.jpg`;
+    }
+
+    private mapStateToThis(state) {
         return {
             loadingMaps: getMapsLoading(state),
             loadingTypes: getTypesLoading(state),
@@ -50,10 +63,3 @@ class MapsListController {
         };
     }
 }
-
-MapsListController.$inject = ['$ngRedux'];
-
-export const MapsListComponent = {
-    controller: MapsListController,
-    template: require('./maps-list.component.html')
-};
