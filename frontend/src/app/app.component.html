@@ -1,14 +1,12 @@
-<section class="layout-column flex">
-    <md-toolbar class="layout-align-start-center layout-row layout-padding-md">
+<section class="app layout-column flex">
+    <mat-toolbar color="primary" class="layout-align-start-center layout-row layout-padding-md">
         <div class="logo"></div>
 
-        <md-nav-bar class="app-nav-bar" md-selected-nav-item="$ctrl.currentStateName" nav-bar-aria-label="navigation links">
-            <md-nav-item md-nav-sref="heroes" name="heroes">Герои</md-nav-item>
-            <md-nav-item md-nav-sref="maps" name="maps">Карты</md-nav-item>
-        </md-nav-bar>
-    </md-toolbar>
+        <a class="nav-link" href="/#/heroes" mat-button color="{{ isActiveModule('heroes') ? 'warn' : '' }}">Герои</a>
+        <a class="nav-link" href="/#/maps" mat-button color="{{ isActiveModule('maps') ? 'warn' : '' }}">Карты</a>
+    </mat-toolbar>
 
     <div class="flex layout-column">
-        <div class="layout-column flex" ui-view></div>
+        <angularjs-router-outlet></angularjs-router-outlet>
     </div>
 </section>

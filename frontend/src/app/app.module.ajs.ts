@@ -8,7 +8,6 @@ import { CoreModule } from './core';
 import { HeroesModule } from './modules/heroes';
 import { MapsModule } from './modules/maps';
 
-import { AppComponent } from './app.component';
 import { appReducer } from './app.reducer';
 import { AppRoutesConfig } from './app.routes';
 import { appEffects } from './app.effects';
@@ -28,7 +27,7 @@ export const AppModuleAjs = angular
         MapsModule.name
     ])
 
-    .component('app', AppComponent)
+    .component('angularjsRouterOutlet', { template: '<ui-view class="layout-column flex"></ui-view>' })
 
     .config([
         ...AppRoutesConfig
