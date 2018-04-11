@@ -1,4 +1,4 @@
-import { BaseHttpService } from '../../../core/services/base-http.service';
+import { BaseHttpService } from '../../../core/services/base-http.service.ajs';
 import { Hero } from '../models/hero.model';
 
 interface HeroesListResponse {

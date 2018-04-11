@@ -1,25 +1,24 @@
-import * as ActionTypes from './constants';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import { MapModel } from '../../models/map.model';
 
+import * as ActionTypes from './constants';
+import { MapsActions } from './actions';
 
-interface MapsState {
-    loadingMaps: boolean;
-    listById: {
-        [mapId: string]: MapModel;
-    };
+
+export interface MapsState extends EntityState<MapModel> {
+    loading: boolean;
 }
 
-const INITIAL_STATE: MapsState = {
-    loadingMaps: false,
-    listById: {}
-};
+export const mapsAdapter: EntityAdapter<MapModel> = createEntityAdapter<MapModel>();
 
-export const mapsReducer = (state: MapsState = INITIAL_STATE, action) => {
-    const { type, payload } = action;
+export const INITIAL_STATE: MapsState = mapsAdapter.getInitialState({
+    loading: false
+});
 
-    switch (type) {
-        case ActionTypes.REQUEST_MAPS_START: {
+export const mapsReducer = (state: MapsState = INITIAL_STATE, action: MapsActions): MapsState => {
+    switch (action.type) {
+        case ActionTypes.REQUEST_MAPS: {
             return {
                 ...state,
                 loading: true
@@ -32,18 +31,12 @@ export const mapsReducer = (state: MapsState = INITIAL_STATE, action) => {
             };
         }
         case ActionTypes.REQUEST_MAPS_SUCCESS: {
-            const maps = payload.apiResponse;
-            const listById = {};
+            const maps: MapModel[] = action.payload;
 
-            maps.forEach((map: MapModel) => {
-               listById[map.id] = map;
-            });
-
-            return {
+            return mapsAdapter.addAll(maps, {
                 ...state,
-                listById,
                 loading: false
-            };
+            });
         }
         default:
             return state;

@@ -1,15 +1,17 @@
-import { BaseHttpService } from '../../../core/services/base-http.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
+import { BaseHttpService } from '../../../core/services/base-http.service';
+import { MapType } from '../models/map-type.model';
+
+
+@Injectable()
 export class MapsTypesApiService {
     url: string = '/maps/types';
 
-    constructor(private BaseHttpService: BaseHttpService) {}
+    constructor(private baseHttpService: BaseHttpService) {}
 
-    getList() {
-        return this.BaseHttpService.getList(this.url).then((response) => {
-            return response.data;
-        });
+    getList(): Observable<MapType[]> {
+        return this.baseHttpService.getList(this.url);
     }
 }
-
-MapsTypesApiService.$inject = ['BaseHttpService'];

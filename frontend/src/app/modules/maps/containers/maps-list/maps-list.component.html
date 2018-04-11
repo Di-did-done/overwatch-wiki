@@ -1,14 +1,14 @@
 <section class="maps-list layout-column flex layout-padding">
-    <div class="flex layout-row layout-align-center center layout-padding" *ngIf="loadingMaps || loadingTypes">
+    <div class="flex layout-row layout-align-center center layout-padding" *ngIf="(loadingMaps$ | async) || (loadingTypes$ | async)">
         <mat-spinner [diameter]="40"></mat-spinner>
     </div>
 
-    <div *ngIf="!loadingMaps && !loadingTypes">
-        <div class="layout-column" *ngFor="let type of types">
+    <div *ngIf="!(loadingMaps$ | async) && !(loadingTypes$ | async)">
+        <div class="layout-column" *ngFor="let type of types$ | async">
             <h3>{{ type.name }}</h3>
 
             <div class="layout-row layout-align-stretch-start layout-wrap">
-                <mat-card class="map-card" *ngFor="let map of mapsByType[type.id]">
+                <mat-card class="map-card" *ngFor="let map of (mapsByType$ | async)[type.id]">
                     <img mat-card-image [src]="getMapImage(map.id)" class="md-card-image">
                     <mat-card-header class="flex-none">
                         <mat-card-title>

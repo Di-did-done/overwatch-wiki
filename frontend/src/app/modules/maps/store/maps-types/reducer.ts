@@ -1,21 +1,24 @@
-import * as ActionTypes from './constants';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+
 import { MapType } from '../../models/map-type.model';
 
-interface MapsTypesState {
-    loadingMaps: boolean;
-    list: MapType[];
+import * as ActionTypes from './constants';
+import { MapsTypesActions } from './actions';
+
+
+export interface MapsTypesState extends EntityState<MapType> {
+    loading: boolean;
 }
 
-const INITIAL_STATE: MapsTypesState = {
-    loadingMaps: false,
-    list: []
-};
+export const mapsTypesAdapter: EntityAdapter<MapType> = createEntityAdapter<MapType>();
 
-export const mapsTypesReducer = (state: MapsTypesState = INITIAL_STATE, action) => {
-    const { type, payload } = action;
+export const INITIAL_STATE: MapsTypesState = mapsTypesAdapter.getInitialState({
+    loading: false
+});
 
-    switch (type) {
-        case ActionTypes.REQUEST_MAPS_TYPES_START: {
+export const mapsTypesReducer = (state: MapsTypesState = INITIAL_STATE, action: MapsTypesActions) => {
+    switch (action.type) {
+        case ActionTypes.REQUEST_MAPS_TYPES: {
             return {
                 ...state,
                 loading: true
@@ -28,11 +31,12 @@ export const mapsTypesReducer = (state: MapsTypesState = INITIAL_STATE, action) 
             };
         }
         case ActionTypes.REQUEST_MAPS_TYPES_SUCCESS: {
-            return {
+            const mapsTypes = action.payload;
+
+            return mapsTypesAdapter.addAll(mapsTypes, {
                 ...state,
-                list: payload.apiResponse,
                 loading: false
-            };
+            });
         }
         default:
             return state;

@@ -3,10 +3,9 @@ import { createEpicMiddleware } from 'redux-observable';
 
 import { ngReduxModule } from './core/redux';
 
-import { CoreModule } from './core';
+import { CoreModuleAjs } from './core';
 
 import { HeroesModule } from './modules/heroes';
-import { MapsModuleAjs } from './modules/maps';
 
 import { appReducer } from './app.reducer';
 import { AppRoutesConfig } from './app.routes';
@@ -21,10 +20,9 @@ export const AppModuleAjs = angular
 
         ngReduxModule.name,
 
-        CoreModule.name,
+        CoreModuleAjs.name,
 
-        HeroesModule.name,
-        MapsModuleAjs.name
+        HeroesModule.name
     ])
 
     .component('angularjsRouterOutlet', { template: '<ui-view class="layout-column flex"></ui-view>' })

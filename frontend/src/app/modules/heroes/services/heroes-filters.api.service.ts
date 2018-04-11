@@ -1,4 +1,4 @@
-import { BaseHttpService } from '../../../core/services/base-http.service';
+import { BaseHttpService } from '../../../core/services/base-http.service.ajs';
 
 export class HeroesFiltersApiService {
     url: string = '/heroes/filters';

@@ -1,14 +1,17 @@
-// tslint:disable:max-classes-per-file
 import { Component, Directive, ElementRef, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { MatToolbarModule, MatButtonModule } from '@angular/material';
 import { UpgradeComponent } from '@angular/upgrade/static';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { MapsModule } from './modules/maps';
 import { ngReduxProvider } from './ajs-upgraded-provider';
 import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 
 
 @Component({
@@ -36,8 +39,14 @@ export class AngularjsRouterOutletDirective extends UpgradeComponent {
             { path: '**', component: EmptyComponent }
         ], { useHash: true }),
 
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
+        StoreDevtoolsModule.instrument(),
+
         MatToolbarModule,
         MatButtonModule,
+
+        CoreModule,
 
         MapsModule
     ],
