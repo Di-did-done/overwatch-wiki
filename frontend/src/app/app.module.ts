@@ -1,7 +1,7 @@
 // tslint:disable:max-classes-per-file
-import { Directive, ElementRef, Injector, NgModule } from '@angular/core';
+import { Component, Directive, ElementRef, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatToolbarModule, MatButtonModule } from '@angular/material';
 import { UpgradeComponent } from '@angular/upgrade/static';
 
@@ -9,6 +9,13 @@ import { AppComponent } from './app.component';
 import { MapsModule } from './modules/maps';
 import { ngReduxProvider } from './ajs-upgraded-provider';
 import { HttpClientModule } from '@angular/common/http';
+
+
+@Component({
+    selector: 'app-empty-component',
+    template: ''
+})
+export class EmptyComponent {}
 
 
 @Directive({ selector: 'angularjs-router-outlet' })
@@ -23,7 +30,11 @@ export class AngularjsRouterOutletDirective extends UpgradeComponent {
         BrowserModule,
         HttpClientModule,
 
-        RouterModule.forRoot([]),
+        RouterModule.forRoot([
+            { path: '', redirectTo: '/heroes', pathMatch: 'full' },
+            { path: 'maps', loadChildren: './modules/maps/maps.module#MapsModule' },
+            { path: '**', component: EmptyComponent }
+        ], { useHash: true }),
 
         MatToolbarModule,
         MatButtonModule,
@@ -32,7 +43,8 @@ export class AngularjsRouterOutletDirective extends UpgradeComponent {
     ],
     declarations: [
         AppComponent,
-        AngularjsRouterOutletDirective
+        AngularjsRouterOutletDirective,
+        EmptyComponent
     ],
     entryComponents: [
         AppComponent
@@ -42,6 +54,9 @@ export class AngularjsRouterOutletDirective extends UpgradeComponent {
     ]
 })
 export class AppModule {
+    constructor(router: Router) {
+        router.initialNavigation();
+    }
     // tslint:disable:no-empty
     ngDoBootstrap() {}
 }

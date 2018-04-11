@@ -4,11 +4,16 @@ import { MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 
 import { MapsPageComponent } from './routes';
 import { MapsListComponent } from './containers';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
     imports: [
         CommonModule,
+
+        RouterModule.forChild([
+            { path: '', component: MapsPageComponent }
+        ]),
 
         MatProgressSpinnerModule,
         MatCardModule
