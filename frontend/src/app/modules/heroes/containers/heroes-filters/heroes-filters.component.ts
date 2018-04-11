@@ -1,3 +1,5 @@
+import './heroes-filters.component.less';
+
 import _ from 'lodash';
 
 import { loadFiltersAction, changeSelectedFiltersAction } from '../../store/filters/actions';

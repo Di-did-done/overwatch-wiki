@@ -1,10 +1,11 @@
-import './heroes-list.component.less';
+import './heroes-container.component.less';
 
 import { loadHeroesAction, selectHeroAction } from '../../store/heroes/actions';
-import { getHeroes, getHeroesLoading, getSelectedHeroId } from '../../store/heroes/selectors';
+import { getHeroesLoading, getHeroes, getSelectedHeroId } from '../../store/heroes/selectors';
 import { Hero } from '../../models/hero.model';
 
-class HeroesListController {
+
+class HeroesContainerController {
     // Actions
     loadHeroesAction;
     selectHeroAction;
@@ -14,10 +15,11 @@ class HeroesListController {
     loading: boolean;
 
     // Local Variables
+    viewMode: 'blocks' | 'grid' = 'blocks';
     unsubscribe: () => void;
 
     constructor($ngRedux) {
-        this.unsubscribe = $ngRedux.connect(this._mapStateToThis, {
+        this.unsubscribe = $ngRedux.connect(this.mapStateToThis, {
             loadHeroesAction,
             selectHeroAction
         })(this);
@@ -35,7 +37,15 @@ class HeroesListController {
         this.selectHeroAction(heroId);
     }
 
-    _mapStateToThis(state) {
+    setViewMode(mode) {
+        this.viewMode = mode;
+    }
+
+    isActiveViewMode(mode): boolean {
+        return this.viewMode === mode;
+    }
+
+    private mapStateToThis(state) {
         return {
             loading: getHeroesLoading(state),
             heroes: getHeroes(state),
@@ -44,7 +54,9 @@ class HeroesListController {
     }
 }
 
-export const HeroesListComponent = {
-    controller: HeroesListController,
-    template: require('./heroes-list.component.html')
+HeroesContainerController.$inject = ['$ngRedux'];
+
+export const HeroesContainerComponent = {
+    controller: HeroesContainerController,
+    template: require('./heroes-container.component.html')
 };

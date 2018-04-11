@@ -7,6 +7,7 @@ import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
 import 'angular-i18n/angular-locale_ru-ru';
+import 'angular-ui-grid/ui-grid';
 
 import 'lodash';
 

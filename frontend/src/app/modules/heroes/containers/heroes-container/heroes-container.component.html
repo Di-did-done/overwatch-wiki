@@ -1,0 +1,42 @@
+<div class="heroes-container layout-column flex">
+    <div class="layout-row layout-align-space-between-start toolbar">
+        <heroes-filters></heroes-filters>
+
+        <div class="button-group">
+            <md-button class="md-raised"
+                       aria-label="Blocks"
+                       ng-click="$ctrl.setViewMode('blocks')"
+                       ng-class="{'md-primary': $ctrl.isActiveViewMode('blocks')}">
+                <i class="fa fa-th"></i>
+            </md-button>
+            <md-button class="md-raised"
+                       aria-label="Grid"
+                       ng-click="$ctrl.setViewMode('grid')"
+                       ng-class="{'md-primary': $ctrl.isActiveViewMode('grid')}">
+                <i class="fa fa-bars"></i>
+            </md-button>
+        </div>
+    </div>
+
+
+    <md-content class="layout-column flex">
+        <div class="flex-none layout-row layout-align-center-center layout-padding" ng-if="$ctrl.loading">
+            <md-progress-circular class="md-accent" md-diameter="40" md-mode="indeterminate"></md-progress-circular>
+        </div>
+
+        <div class="layout-column flex-100">
+            <heroes-list ng-if="$ctrl.isActiveViewMode('blocks')"
+                         heroes="$ctrl.heroes"
+                         selected-hero-id="$ctrl.selectedHeroId"
+                         on-select="$ctrl.selectHero(heroId)">
+            </heroes-list>
+
+            <heroes-grid ng-if="$ctrl.isActiveViewMode('grid')"
+                         heroes="$ctrl.heroes"
+                         selected-hero-id="$ctrl.selectedHeroId"
+                         loading="$ctrl.loading"
+                         on-select="$ctrl.selectHero(heroId)">
+            </heroes-grid>
+        </div>
+    </md-content>
+</div>

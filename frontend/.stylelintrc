@@ -22,7 +22,6 @@
         "max-line-length": 120,
         "max-nesting-depth": 4,
         "media-feature-name-no-vendor-prefix": true,
-        "no-descending-specificity": true,
         "no-duplicate-selectors": true,
         "no-eol-whitespace": [true, {
             "ignore": ["empty-lines"]
